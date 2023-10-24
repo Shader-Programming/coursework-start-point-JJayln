@@ -4,17 +4,24 @@
 MyScene::MyScene(GLFWwindow* window, InputHandler* H) : Scene(window, H) {
 	m_camera = new FirstPersonCamera();
 	m_camera->attachHandler(m_window, m_handler);
+	m_myShader = new Shader("..\\shaders\\vertexString.glsl", "..\\shaders\\fragString.glsl");
 	makeVAO();
 
 
 
 }
 
+MyScene::~MyScene()
+{
+	delete m_myShader;
+	delete m_camera;
+}
+
 void MyScene::makeVAO() {
 	glCreateBuffers(1, &VBO);
 	glNamedBufferStorage(VBO, sizeof(float) * 9, vertexData, GL_DYNAMIC_STORAGE_BIT);
 
-	glCreateVertexArrays(1, &VBO);
+	glCreateVertexArrays(1, &VAO);
 	glVertexArrayVertexBuffer(VAO, 0, VBO, 0, sizeof(float) * 3);
 
 	glEnableVertexArrayAttrib(VAO, 0);
@@ -28,4 +35,10 @@ void MyScene::makeVAO() {
 void MyScene::update(float dt) {
 	m_camera->update(dt);
 	render();
+}
+
+void MyScene::render() {
+	m_myShader->use();
+	glBindVertexArray(VAO);
+	glDrawArrays(GL_TRIANGLES, 0, 3);
 }

@@ -15,4 +15,5 @@ private:
 						  -0.5, -0.5, 0.0 };
 	void makeVAO();
 	void render();
+	Shader* m_myShader;
 };
