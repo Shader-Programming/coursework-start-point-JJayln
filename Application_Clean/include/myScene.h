@@ -9,11 +9,57 @@ public:
 	~MyScene();
 	void update(float dt) override;
 private:
-	unsigned int VBO, VAO;      //POS             RGB
-	float vertexData[18] = { 0.5, 0.5, 0.0,  1.0, 0.0, 0.0,
-						    -0.5, 0.5, 0.0,  0.0, 1.0, 0.0,
-						    -0.5,-0.5, 0.0,  0.0, 0.0, 2.0};
+	/*							//POS             RGB
+	float vertexData[21] = { 0.5, 0.5, 0.0,  1.0, 0.0, 0.0,
+						     0.5,-0.5, 0.0,  0.0, 1.0, 0.0,
+						    -0.5,-0.5, 0.0,  0.0, 0.0, 2.0,
+							-0.5, 0.5, 0.0};
+	*/
+
+	Shader* m_myShader;
+	unsigned int VBO, VAO, EBO;
+
+	std::vector<float> vertexData = {//  xyz
+									// back
+									-0.5f, -0.5f, -0.5f,
+									 0.5f, -0.5f, -0.5f,
+									 0.5f,  0.5f, -0.5f,
+									-0.5f,  0.5f, -0.5f,
+									// front
+									-0.5f, -0.5f,  0.5f,
+									 0.5f, -0.5f,  0.5f,
+									 0.5f,  0.5f,  0.5f,
+									-0.5f,  0.5f,  0.5f,
+									// left
+									-0.5f,  0.5f,  0.5f,
+									-0.5f,  0.5f, -0.5f,
+									-0.5f, -0.5f, -0.5f,
+									-0.5f, -0.5f,  0.5f,
+									// right
+									 0.5f,  0.5f,  0.5f,
+									 0.5f,  0.5f, -0.5f,
+									 0.5f, -0.5f, -0.5f,
+									 0.5f, -0.5f,  0.5f,
+									 // bottom
+									 -0.5f, -0.5f, -0.5f,
+									  0.5f, -0.5f, -0.5f,
+									  0.5f, -0.5f,  0.5f,
+									 -0.5f, -0.5f,  0.5f,
+									 // top
+									 -0.5f,  0.5f, -0.5f,
+									  0.5f,  0.5f, -0.5f,
+									  0.5f,  0.5f,  0.5f,
+									 -0.5f,  0.5f,  0.5f};
+
+	std::vector<unsigned int> cubeIndices = { 0, 1, 2, 2, 3, 0,
+											  4, 5, 6, 6, 7, 4,
+											  8, 9, 10, 10, 11, 8,
+											  12, 13, 14, 14, 15, 12,
+											  16, 17, 18, 18, 19, 16,
+											  20, 21, 22, 22, 23, 20
+	};
+
 	void makeVAO();
 	void render();
-	Shader* m_myShader;
+	
 };
