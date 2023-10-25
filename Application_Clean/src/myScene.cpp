@@ -18,17 +18,20 @@ MyScene::~MyScene()
 }
 
 void MyScene::makeVAO() {
-	glCreateBuffers(1, &VBO);
-	glNamedBufferStorage(VBO, sizeof(float) * 9, vertexData, GL_DYNAMIC_STORAGE_BIT);
+	glCreateBuffers(1, &VBO); // number of buffers, name of buffer
+	glNamedBufferStorage(VBO, sizeof(float) * 18, vertexData, GL_DYNAMIC_STORAGE_BIT);// putting infomation in the created buffer
 
-	glCreateVertexArrays(1, &VAO);
-	glVertexArrayVertexBuffer(VAO, 0, VBO, 0, sizeof(float) * 3);
+	glCreateVertexArrays(1, &VAO); // creating a VertexArray 
+	glVertexArrayVertexBuffer(VAO, 0, VBO, 0, sizeof(float) * 6); // putting the buffer into the VA
 
 	glEnableVertexArrayAttrib(VAO, 0);
+	glEnableVertexArrayAttrib(VAO, 1);
 
 	glVertexArrayAttribFormat(VAO, 0, 3, GL_FLOAT, GL_FALSE, 0);
+	glVertexArrayAttribFormat(VAO, 1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float));
 
 	glVertexArrayAttribBinding(VAO, 0, 0);
+	glVertexArrayAttribBinding(VAO, 1, 0);
 
 }
 
