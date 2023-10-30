@@ -42,8 +42,23 @@ void MyScene::update(float dt) {
 }
 
 void MyScene::render() {
+	m_model = glm::mat4(1.0f);
+
+	m_projection = m_camera->getProjectionMatrix();
+	m_view = m_camera->getViewMatrix();
 	m_myShader->use();
+
+	m_myShader->setMat4("View", m_view);
+	m_myShader->setMat4("Projection", m_projection);
+	m_myShader->setMat4("Model", m_model);
+
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, cubeIndices.size(), GL_UNSIGNED_INT, 0);
 	//glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	m_model = glm::translate(m_model, glm::vec3(5.0, 0.0, 0.0));
+
+	m_myShader->setMat4("Model", m_model);
+
+	glDrawElements(GL_TRIANGLES, vertexData.size(), GL_UNSIGNED_INT, 0);
 }

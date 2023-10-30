@@ -18,6 +18,7 @@ private:
 
 	Shader* m_myShader;
 	unsigned int VBO, VAO, EBO;
+	glm::mat4 m_model, m_view, m_projection;
 
 	std::vector<float> vertexData = {//  xyz
 									// back
