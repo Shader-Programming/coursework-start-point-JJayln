@@ -52,11 +52,21 @@ void MyScene::render() {
 	m_myShader->setMat4("Projection", m_projection);
 	m_myShader->setMat4("Model", m_model);
 
+	m_myShader->setVec3("cl", glm::vec3(0.6, 0.4, 0.0));
+
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, cubeIndices.size(), GL_UNSIGNED_INT, 0);
 	//glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	m_model = glm::translate(m_model, glm::vec3(5.0, 0.0, 0.0));
+	m_myShader->setVec3("cl", glm::vec3(0.1, 0.4, 0.0));
+
+	m_myShader->setMat4("Model", m_model);
+
+	glDrawElements(GL_TRIANGLES, vertexData.size(), GL_UNSIGNED_INT, 0);
+
+	m_model = glm::translate(m_model, glm::vec3(3.0, 0.0, 0.0));
+	m_myShader->setVec3("cl", glm::vec3(0.2, 0.4, 0.6));
 
 	m_myShader->setMat4("Model", m_model);
 
