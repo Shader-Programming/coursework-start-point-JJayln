@@ -43,9 +43,9 @@ void MyScene::update(float dt) {
 
 void MyScene::render() {
 	m_model = glm::mat4(1.0f);
-
 	m_projection = m_camera->getProjectionMatrix();
 	m_view = m_camera->getViewMatrix();
+
 	m_myShader->use();
 
 	m_myShader->setMat4("View", m_view);
@@ -60,6 +60,7 @@ void MyScene::render() {
 
 	m_model = glm::translate(m_model, glm::vec3(5.0, 0.0, 0.0));
 	m_myShader->setVec3("cl", glm::vec3(0.1, 0.4, 0.0));
+	
 
 	m_myShader->setMat4("Model", m_model);
 
@@ -67,6 +68,7 @@ void MyScene::render() {
 
 	m_model = glm::translate(m_model, glm::vec3(3.0, 0.0, 0.0));
 	m_myShader->setVec3("cl", glm::vec3(0.2, 0.4, 0.6));
+	m_model = glm::rotate(m_model, (float)(glfwGetTime() * 0.5), glm::vec3(1.0, 0.0, 0.0));
 
 	m_myShader->setMat4("Model", m_model);
 
