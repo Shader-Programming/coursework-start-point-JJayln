@@ -25,14 +25,17 @@ void MyScene::makeVAO() {
 	glNamedBufferStorage(EBO, sizeof(unsigned int) * cubeIndices.size(), cubeIndices.data(), GL_DYNAMIC_STORAGE_BIT);
 
 	glCreateVertexArrays(1, &VAO);
-	glVertexArrayVertexBuffer(VAO, 0, VBO, 0, sizeof(float) * 3);
+	glVertexArrayVertexBuffer(VAO, 0, VBO, 0, sizeof(float) * 6);
 	glVertexArrayElementBuffer(VAO, EBO);
 
 	glEnableVertexArrayAttrib(VAO, 0);
+	glEnableVertexArrayAttrib(VAO, 1);
 
 	glVertexArrayAttribFormat(VAO, 0, 3, GL_FLOAT, GL_FALSE, 0);
+	glVertexArrayAttribFormat(VAO, 1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float));
 
 	glVertexArrayAttribBinding(VAO, 0, 0);
+	glVertexArrayAttribBinding(VAO, 1, 0);
 
 }
 
@@ -52,14 +55,15 @@ void MyScene::render() {
 	m_myShader->setMat4("Projection", m_projection);
 	m_myShader->setMat4("Model", m_model);
 
-	m_myShader->setVec3("cl", glm::vec3(0.6, 0.4, 0.0));
+	//m_myShader->setVec3("cl", glm::vec3(0.6, 0.4, 0.0));
+	
 
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, cubeIndices.size(), GL_UNSIGNED_INT, 0);
 	//glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	m_model = glm::translate(m_model, glm::vec3(5.0, 0.0, 0.0));
-	m_myShader->setVec3("cl", glm::vec3(0.1, 0.4, 0.0));
+	//m_myShader->setVec3("cl", glm::vec3(0.1, 0.4, 0.0));
 	
 
 	m_myShader->setMat4("Model", m_model);
@@ -67,7 +71,7 @@ void MyScene::render() {
 	glDrawElements(GL_TRIANGLES, vertexData.size(), GL_UNSIGNED_INT, 0);
 
 	m_model = glm::translate(m_model, glm::vec3(3.0, 0.0, 0.0));
-	m_myShader->setVec3("cl", glm::vec3(0.2, 0.4, 0.6));
+	//m_myShader->setVec3("cl", glm::vec3(0.2, 0.4, 0.6));
 	m_model = glm::rotate(m_model, (float)(glfwGetTime() * 0.5), glm::vec3(1.0, 0.0, 0.0));
 
 	m_myShader->setMat4("Model", m_model);
