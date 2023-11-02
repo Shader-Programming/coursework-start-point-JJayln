@@ -51,6 +51,7 @@ void MyScene::render() {
 
 	m_myShader->use();
 
+	m_myShader->setVec3("viewPos",m_camera->getPosition());
 	m_myShader->setMat4("View", m_view);
 	m_myShader->setMat4("Projection", m_projection);
 	m_myShader->setMat4("Model", m_model);

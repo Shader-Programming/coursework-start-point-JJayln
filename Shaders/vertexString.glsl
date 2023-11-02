@@ -8,13 +8,13 @@ uniform mat4 View;
 uniform mat4 Projection;
 
 out vec3 Normal;
-out vec3 posInWS
+out vec3 posInWS;
 
 void main(){
 	
-	Normal = aNorm;
+	Normal = mat3(transpose(inverse(Model))) * aNorm;
 
-	vec4 worldSp = model * vec4(aPos, 1.0);
+	vec4 worldSp = Model * vec4(aPos, 1.0);
 	posInWS = worldSp.xyz;
 	gl_Position = Projection * View * worldSp;
 	
