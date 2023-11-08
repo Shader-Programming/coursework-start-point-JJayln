@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Shader.h"
 
+
 class MyScene : public Scene {
 
 public:
