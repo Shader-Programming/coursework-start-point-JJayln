@@ -1,4 +1,4 @@
-#include "DrLight.h"
+#include "drLight.h"
 
 DrLight::DrLight(glm::vec3 colour, glm::vec3 direction, float ambient) :
 	Light(colour),
@@ -6,7 +6,7 @@ DrLight::DrLight(glm::vec3 colour, glm::vec3 direction, float ambient) :
 	m_ambientFactor(ambient)
 {}
 
-void DrLight::setLightUniforms(Shader * shader)
+void DrLight::setLightUniforms(Shader* shader)
 {
 	shader->use();
 	shader->setVec3("lightDr", m_direction);

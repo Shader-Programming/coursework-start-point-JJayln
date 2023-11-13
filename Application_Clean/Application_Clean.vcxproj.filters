@@ -45,6 +45,9 @@
     <ClCompile Include="DrLight.cpp">
       <Filter>Source Files\Lights</Filter>
     </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\WindowManager.h">
@@ -74,11 +77,14 @@
     <ClInclude Include="include\myScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DrLight.h">
+    <ClInclude Include="drLight.h">
       <Filter>Header Files\Lights</Filter>
     </ClInclude>
     <ClInclude Include="Light.h">
       <Filter>Header Files\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

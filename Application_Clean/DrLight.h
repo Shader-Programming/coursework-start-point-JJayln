@@ -3,7 +3,6 @@
 
 #include "Light.h"
 #include "Shader.h"
-#include <memory>
 
 class DrLight : public Light {
 
@@ -18,7 +17,9 @@ public:
 	glm::vec3& getDirection() { return m_direction; }
 	float& getAmbientFactor() { return m_ambientFactor; }
 
+	
 private:
 	glm::vec3 m_direction;
 	float m_ambientFactor;
+	
 };
