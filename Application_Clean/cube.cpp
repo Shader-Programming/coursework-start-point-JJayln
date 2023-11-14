@@ -9,6 +9,7 @@ Cube::Cube(glm::vec3 col, float shine, float specStrength): m_colour(col), m_shi
 
 Cube::~Cube()
 {
+
 }
 
 void Cube::setCubeMaterialValue(Shader* shader)
@@ -21,16 +22,20 @@ void Cube::setCubeMaterialValue(Shader* shader)
 
 void Cube::rotate(float angle, glm::vec3 axis)
 {
-
+	m_model = glm::rotate(m_model, (float)(glfwGetTime() * 0.5), glm::vec3(1.0, 0.0, 0.0));
 }
 
 void Cube::scale(float scaleFactor, glm::vec3 axis)
 {
-
+	m_myShader->setMat4("Model", m_model);
 }
 
 void Cube::translate(glm::vec3 translation)
 {
+	m_model = glm::translate(m_model, glm::vec3(5.0, 0.0, 0.0));
+
+	m_model = glm::translate(m_model, glm::vec3(3.0, 0.0, 0.0));
+
 
 }
 

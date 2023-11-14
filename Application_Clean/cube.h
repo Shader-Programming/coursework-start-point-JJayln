@@ -1,8 +1,14 @@
 #pragma once 
+#include <glad\glad.h>
+#include <GLFW\glfw3.h>
+#include "glm/common.hpp"
+#include <glm/gtc/matrix_transform.hpp>
 #include "Shader.h"
 #include <vector>
+#include "myScene.h"
 
 class Cube {
+
 public:
 	Cube(glm::vec3 col, float shine, float specStrength);
 	~Cube();
@@ -27,6 +33,7 @@ private:
 	float m_sStrength;
 	glm::vec3 m_colour;
 
+	//geometry data
 	std::vector<float> vertexData = {
 		//  xyz, normal
 		// back
@@ -60,7 +67,6 @@ private:
 		  0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
 		 -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f
 	};
-
 	std::vector<unsigned int> cubeIndices = {
 		0, 1, 2, 2, 3, 0,
 		4, 5, 6, 6, 7, 4,
