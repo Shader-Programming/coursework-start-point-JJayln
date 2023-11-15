@@ -14,23 +14,24 @@ public:
 	~Cube();
 	void setCubeMaterialValue(Shader* shader);
 
-	void setTransform(Shader* shader) { shader->setMat4("Model", m_model); }
-	void resetTransform() { m_model = glm::mat4(1.0); }
+	void setTransform(Shader* shader) { shader->setMat4("Model", m_transforml); }
+	void resetTransform() { m_transform = glm::mat4(1.0); }
 
 	unsigned int& getVAO() { return m_VAO; }
-	glm::mat4& getModelMatrix() { return m_model; }
+	glm::mat4& getModelMatrix() { return m_transform; }
 	unsigned int getIndicesCount() { return cubeIndices.size(); }
 
+	/*
 	void rotate(float angle, glm::vec3 axis);
 	void scale(float scaleFactor, glm::vec3 axis);
 	void translate(glm::vec3 translation);
-
+	*/
 private:
 	void makeVAO();
-	void setTransform(Shader* shader) const;
+	//void setTransform(Shader* shader) const;
 	unsigned int m_VAO;
 	unsigned int VBO, VAO, EBO;
-	glm::mat4 m_model;
+	glm::mat4 m_transform;
 	float m_shine;
 	float m_sStrength;
 	glm::vec3 m_colour;

@@ -145,8 +145,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Cube.cpp" />
-    <ClCompile Include="DrLight.cpp" />
+    <ClCompile Include="src\cube.cpp" />
+    <ClCompile Include="src\DrLight.cpp" />
     <ClCompile Include="src\EntryPoint.cpp" />
     <ClCompile Include="src\FPSCamera.cpp" />
     <ClCompile Include="src\glad.c" />
@@ -156,18 +156,18 @@
     <ClCompile Include="src\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cube.h" />
-    <ClInclude Include="drLight.h" />
     <ClInclude Include="include\Camera.h" />
+    <ClInclude Include="include\cube.h" />
+    <ClInclude Include="include\drLight.h" />
     <ClInclude Include="include\FPSCamera.h" />
     <ClInclude Include="include\GLFWinputCodes.h" />
     <ClInclude Include="include\InputHandler.h" />
+    <ClInclude Include="include\Light.h" />
     <ClInclude Include="include\myScene.h" />
     <ClInclude Include="include\Properties.h" />
     <ClInclude Include="include\Scene.h" />
     <ClInclude Include="include\Shader.h" />
     <ClInclude Include="include\WindowManager.h" />
-    <ClInclude Include="Light.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

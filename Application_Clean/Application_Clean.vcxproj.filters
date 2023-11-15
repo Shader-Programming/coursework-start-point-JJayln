@@ -42,11 +42,11 @@
     <ClCompile Include="src\myScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DrLight.cpp">
-      <Filter>Source Files\Lights</Filter>
-    </ClCompile>
-    <ClCompile Include="Cube.cpp">
+    <ClCompile Include="src\cube.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DrLight.cpp">
+      <Filter>Source Files\Lights</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,14 +77,14 @@
     <ClInclude Include="include\myScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="drLight.h">
-      <Filter>Header Files\Lights</Filter>
-    </ClInclude>
-    <ClInclude Include="Light.h">
-      <Filter>Header Files\Lights</Filter>
-    </ClInclude>
-    <ClInclude Include="Cube.h">
+    <ClInclude Include="include\cube.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\drLight.h">
+      <Filter>Header Files\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Light.h">
+      <Filter>Header Files\Lights</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
