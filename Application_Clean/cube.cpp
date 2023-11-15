@@ -2,6 +2,10 @@
 
 Cube::Cube(glm::vec3 col, float shine, float specStrength): m_colour(col), m_shine(shine), m_sStrength(specStrength)
 {
+	VBO = 0;
+	EBO = 0;
+	VAO = 0;
+
 	makeVAO();
 	resetTransform();
 }
@@ -11,6 +15,12 @@ Cube::~Cube()
 {
 
 }
+
+/*void Cube::resetTransform()
+{
+	m_model = glm::mat4(1.0f);
+}*/
+
 
 void Cube::setCubeMaterialValue(Shader* shader)
 {
@@ -22,20 +32,17 @@ void Cube::setCubeMaterialValue(Shader* shader)
 
 void Cube::rotate(float angle, glm::vec3 axis)
 {
-	m_model = glm::rotate(m_model, (float)(glfwGetTime() * 0.5), glm::vec3(1.0, 0.0, 0.0));
+	m_model = glm::rotate(m_model, angle, axis);
 }
 
 void Cube::scale(float scaleFactor, glm::vec3 axis)
 {
-	m_myShader->setMat4("Model", m_model);
+	m_model = glm::scale(m_model, glm::vec3(scaleFactor));
 }
 
 void Cube::translate(glm::vec3 translation)
 {
 	m_model = glm::translate(m_model, glm::vec3(5.0, 0.0, 0.0));
-
-	m_model = glm::translate(m_model, glm::vec3(3.0, 0.0, 0.0));
-
 
 }
 
@@ -59,4 +66,17 @@ void Cube::makeVAO() {
 	glVertexArrayAttribBinding(VAO, 0, 0);
 	glVertexArrayAttribBinding(VAO, 1, 0);
 
+	glDeleteBuffers(1, &VBO);
+	glDeleteBuffers(1, &EBO);
+	glDeleteVertexArrays(1, &VAO);
+
+	
+	
+
+}
+
+void Cube::setTransform(Shader* shader) const
+{
+	glm::mat4 model = glm::mat4(1.0f);
+	shader->setMat4("model", model);
 }

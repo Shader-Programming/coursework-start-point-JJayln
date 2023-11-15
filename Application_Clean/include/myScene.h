@@ -1,6 +1,5 @@
 #pragma once
 #include "Scene.h"
-#include "Shader.h"
 #include "../drLight.h"
 #include "../Cube.h"
 

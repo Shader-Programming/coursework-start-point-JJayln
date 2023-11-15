@@ -3,9 +3,9 @@
 #include <GLFW\glfw3.h>
 #include "glm/common.hpp"
 #include <glm/gtc/matrix_transform.hpp>
-#include "Shader.h"
 #include <vector>
-#include "myScene.h"
+#include <memory>
+#include "Shader.h"
 
 class Cube {
 
@@ -14,11 +14,11 @@ public:
 	~Cube();
 	void setCubeMaterialValue(Shader* shader);
 
-	void setTransform(Shader* shader) { shader->setMat4("Model", m_transform); }
-	void resetTransform() { m_transform = glm::mat4(1.0); }
+	void setTransform(Shader* shader) { shader->setMat4("Model", m_model); }
+	void resetTransform() { m_model = glm::mat4(1.0); }
 
 	unsigned int& getVAO() { return m_VAO; }
-	glm::mat4& getModelMatrix() { return m_transform; }
+	glm::mat4& getModelMatrix() { return m_model; }
 	unsigned int getIndicesCount() { return cubeIndices.size(); }
 
 	void rotate(float angle, glm::vec3 axis);
@@ -27,8 +27,10 @@ public:
 
 private:
 	void makeVAO();
+	void setTransform(Shader* shader) const;
 	unsigned int m_VAO;
-	glm::mat4 m_transform;
+	unsigned int VBO, VAO, EBO;
+	glm::mat4 m_model;
 	float m_shine;
 	float m_sStrength;
 	glm::vec3 m_colour;
