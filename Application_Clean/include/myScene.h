@@ -11,16 +11,12 @@ public:
 	~MyScene();
 	void update(float dt) override;
 private:
-	/*							//POS             RGB
-	float vertexData[21] = { 0.5, 0.5, 0.0,  1.0, 0.0, 0.0,
-						     0.5,-0.5, 0.0,  0.0, 1.0, 0.0,
-						    -0.5,-0.5, 0.0,  0.0, 0.0, 2.0,
-							-0.5, 0.5, 0.0};
-	*/
-
+	
+	Cube* m_Cube;
 	DrLight* m_DrLight;
 	Shader* m_myShader;
-	Cube* m_Cube;
+	
+	
 
 	//unsigned int VBO, VAO, EBO;
 	//glm::mat4 m_model, m_view, m_projection;

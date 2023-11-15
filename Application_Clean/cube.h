@@ -33,6 +33,12 @@ private:
 	float m_sStrength;
 	glm::vec3 m_colour;
 
+	Shader* m_myShader;
+
+
+	unsigned int VBO, VAO, EBO;
+	glm::mat4 m_model, m_view, m_projection;
+
 	//geometry data
 	std::vector<float> vertexData = {
 		//  xyz, normal

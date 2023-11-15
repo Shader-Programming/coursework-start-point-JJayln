@@ -3,7 +3,7 @@
 
 
 MyScene::MyScene(GLFWwindow* window, InputHandler* H) : Scene(window, H) {
-	m_camera = new FirstPersonCamera();
+	m_camera = new FirstPersonCamera(glm::vec3());
 	m_camera->attachHandler(m_window, m_handler);
 	m_myShader = new Shader("..\\shaders\\vertexString.glsl", "..\\shaders\\fragString.glsl");
 	m_DrLight = new DrLight(glm::vec3(1.0), glm::vec3(-1.0f, -1.0f, 0.0f));
@@ -11,10 +11,6 @@ MyScene::MyScene(GLFWwindow* window, InputHandler* H) : Scene(window, H) {
 
 	m_Cube = new Cube(glm::vec3(0.1, 0.2, 0.3), 64, 16);
 	m_Cube->setCubeMaterialValue(m_myShader);
-	//makeVAO();
-
-
-
 }
 
 MyScene::~MyScene()

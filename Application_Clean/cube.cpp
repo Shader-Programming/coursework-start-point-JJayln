@@ -9,7 +9,9 @@ Cube::Cube(glm::vec3 col, float shine, float specStrength): m_colour(col), m_shi
 
 Cube::~Cube()
 {
-
+	glDeleteBuffers(1, &VBO);
+	glDeleteBuffers(1, &EBO);
+	glDeleteVertexArrays(1, &VAO);
 }
 
 void Cube::setCubeMaterialValue(Shader* shader)
@@ -59,4 +61,8 @@ void Cube::makeVAO() {
 	glVertexArrayAttribBinding(VAO, 0, 0);
 	glVertexArrayAttribBinding(VAO, 1, 0);
 
+	/*GLenum error = glGetError();
+	if (error != GL_NO_ERROR) {
+		std::cerr << "OpenGL error (makeVAO): " << error << std::endl;
+	}*/
 }
