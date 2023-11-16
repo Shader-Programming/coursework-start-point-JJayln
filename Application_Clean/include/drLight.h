@@ -1,4 +1,6 @@
 #pragma once
+#pragma once
+
 #include "Light.h"
 #include "Shader.h"
 

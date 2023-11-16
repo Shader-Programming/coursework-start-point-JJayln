@@ -1,6 +1,4 @@
 #pragma once
-#include <GLFW/glfw3.h>
-#include "InputHandler.h"
 #include "FPSCamera.h"
 /*
 Everything in scene goes here

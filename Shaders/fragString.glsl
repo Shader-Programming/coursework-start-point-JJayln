@@ -1,61 +1,81 @@
-# version 330 core
+#version 330 core
 
+//uniform vec3 cl;
 out vec4 FragColor;
 //in vec3 vertexColour;
 
-in vec3 normals;
-
+in vec3 Normal;
 in vec3 posInWS;
 
 uniform vec3 viewPos;
+uniform vec3 plightpos;
+uniform vec3 plightcl;
+uniform vec3 pAtt;
 
-vec3 getDirectionLight();
+vec3 cubeCl = vec3(0.1, 0.2, 0.3);
 
-vec3 n = normalize(normals);
-vec3 viewDir = normalize(viewPos - posInWS);
+vec3 lightCl = vec3(1.0f);
+vec3 lightDr = vec3(-1.0f, -1.0f, 0.0f);
+float ambientF = 0.5;
 
-vec3 getDirectionLight();
+float shine = 16;
+float specStrength = 1.5;
 
-uniform vec3 cubeColour;
+vec3 getDrlight()
+{
+    //ambient
+    vec3 ambient = cubeCl * lightCl * ambientF;
 
-uniform vec3 lightColour;
-uniform vec3 lightDirection;
-uniform float ambientFactor;
-uniform float shine;
-uniform float specStrength;
+    //diffuse
+    vec3 n = normalize(Normal);
+    float diffuseF = dot(n, -lightDr);
+    diffuseF = max(diffuseF, 0.0f);
+    vec3 diffuse = cubeCl * lightCl * diffuseF;
 
-in vec3 posInWS;
+    //Blinn Phong
+    vec3 viewDir = normalize(viewPos - posInWS);
+    vec3 H = normalize(-lightDr + viewDir);
+    float specLevel = dot(n, H);
+    specLevel = max(specLevel, 0.0);
+    specLevel = pow(specLevel, shine);
+    vec3 specular = lightCl * specLevel * specStrength;
 
-uniform vec3 viewPos;
-
-vec3 n = normalize(normals);
-vec3 viewDir = normalize(viewPos - posInWS);
-
-vec3 getDirectionLight();
-
-void main() {
-	vec3 result = getDirectionLight();
-	FragColor = vec4(result, 1.0); // RGA
-
+    return ambient + diffuse + specular;
 }
 
-vec3 getDirectionLight()
-{
-	//ambient
-	vec3 ambient = cubeColour * lightColour * ambientFactor;
+vec3 getPL() {
+    //attn
+    float distance = length(plightpos - posInWS);
+    float attn = 1.0 / (pAtt.x + (pAtt.y * distance) + (pAtt.z * (distance * distance)));
 
-	//diffused
-	float diffuseFactor = dot(n, -lightDirection);
-	diffuseFactor = max(diffuseFactor, 0.0f);
-	vec3 diffuse = cubeColour * lightColour * diffuseFactor;
+    vec3 lightDir = normalize((plightpos - posInWS));
 
-	//Blinn Phong speculer
-	vec3 H = normalize(-lightDirection + viewDir);
-	float specLevel = dot(n, H);
-	specLevel = max(specLevel, 0.0);
-	specLevel = pow(specLevel, shine);
-	vec3 specular = lightColour * specLevel * specStrength;
+    //ambient
+    vec3 ambient = cubeCl * lightCl * ambientF;
+
+    //diffuse
+    vec3 n = normalize(Normal);
+    float diffuseF = dot(n, -lightDr);
+    diffuseF = max(diffuseF, 0.0f);
+    vec3 diffuse = cubeCl * lightCl * diffuseF;
+
+    //Blinn Phong
+    vec3 viewDir = normalize(viewPos - posInWS);
+    vec3 H = normalize(-lightDr + viewDir);
+    float specLevel = dot(n, H);
+    specLevel = max(specLevel, 0.0);
+    specLevel = pow(specLevel, shine);
+    vec3 specular = lightCl * specLevel * specStrength;
+
+    diffuse = diffuse * attn;
+    specular = specular * attn;
+    return diffuse + specular;
+}
 
 
-	return ambient + diffuse + specular;
+void main() {
+
+    vec3 result = getDrlight();
+    result += getPL();
+    FragColor = vec4(result, 1.0);
 }

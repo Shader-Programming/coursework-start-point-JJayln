@@ -86,5 +86,8 @@
     <ClInclude Include="include\Light.h">
       <Filter>Header Files\Lights</Filter>
     </ClInclude>
+    <ClInclude Include="include\PLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

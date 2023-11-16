@@ -1,7 +1,8 @@
 #pragma once
 #include "Scene.h"
-#include "../drLight.h"
-#include "../Cube.h"
+#include "Shader.h"
+#include "DrLight.h"
+#include "cube.h"
 
 class MyScene : public Scene {
 
@@ -10,12 +11,6 @@ public:
 	~MyScene();
 	void update(float dt) override;
 private:
-	/*							//POS             RGB
-	float vertexData[21] = { 0.5, 0.5, 0.0,  1.0, 0.0, 0.0,
-						     0.5,-0.5, 0.0,  0.0, 1.0, 0.0,
-						    -0.5,-0.5, 0.0,  0.0, 0.0, 2.0,
-							-0.5, 0.5, 0.0};
-	*/
 
 	DrLight* m_DrLight;
 	Shader* m_myShader;

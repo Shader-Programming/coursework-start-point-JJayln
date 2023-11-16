@@ -164,6 +164,7 @@
     <ClInclude Include="include\InputHandler.h" />
     <ClInclude Include="include\Light.h" />
     <ClInclude Include="include\myScene.h" />
+    <ClInclude Include="include\PLight.h" />
     <ClInclude Include="include\Properties.h" />
     <ClInclude Include="include\Scene.h" />
     <ClInclude Include="include\Shader.h" />

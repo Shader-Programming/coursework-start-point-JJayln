@@ -9,8 +9,8 @@ MyScene::MyScene(GLFWwindow* window, InputHandler* H) : Scene(window, H) {
 	m_DrLight = new DrLight(glm::vec3(1.0), glm::vec3(-1.0f, -1.0f, 0.0f));
 	m_DrLight->setLightUniforms(m_myShader);
 
-	m_Cube = new cube(glm::vec3(0.1, 0.2, 0.3), 64, 16);
-	m_Cube->setCubeMaterialValues(m_myShader);
+	m_Cube = new Cube(glm::vec3(0.1, 0.2, 0.3), 64, 16);
+	m_Cube->setCubeMaterialValue(m_myShader);
 }
 
 MyScene::~MyScene()
@@ -39,5 +39,19 @@ void MyScene::render() {
 	glBindVertexArray(m_Cube->getVAO());
 	m_Cube->setTransform(m_myShader);
 	glDrawElements(GL_TRIANGLES, m_Cube->getIndicesCount(), GL_UNSIGNED_INT, 0);
+
+	//Cube 2
+	m_Cube->translate(glm::vec3(5.0, 0.0, 0.0));
+	m_Cube->rotate((float)(glfwGetTime() * 9.0), glm::vec3(1.0, 0.0, 0.0));
+	m_Cube->setTransform(m_myShader);
+	glDrawElements(GL_TRIANGLES, m_Cube->getIndicesCount(), GL_UNSIGNED_INT, 0);
+	m_Cube->resetTransform();
+
+	//Cube 3
+	m_Cube->translate(glm::vec3(2.5, 0.0, 0.0));
+	m_Cube->rotate((float)(glfwGetTime() * -9.0), glm::vec3(1.0, 0.0, 0.0));
+	m_Cube->setTransform(m_myShader);
+	glDrawElements(GL_TRIANGLES, m_Cube->getIndicesCount(), GL_UNSIGNED_INT, 0);
+	m_Cube->resetTransform();
 
 }
