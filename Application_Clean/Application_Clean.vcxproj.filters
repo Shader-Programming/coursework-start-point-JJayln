@@ -48,6 +48,9 @@
     <ClCompile Include="src\DrLight.cpp">
       <Filter>Source Files\Lights</Filter>
     </ClCompile>
+    <ClCompile Include="src\Polight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\WindowManager.h">
@@ -86,7 +89,7 @@
     <ClInclude Include="include\Light.h">
       <Filter>Header Files\Lights</Filter>
     </ClInclude>
-    <ClInclude Include="include\PLight.h">
+    <ClInclude Include="include\Polight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

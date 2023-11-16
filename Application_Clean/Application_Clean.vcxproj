@@ -152,7 +152,7 @@
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\InputHandler.cpp" />
     <ClCompile Include="src\myScene.cpp" />
-    <ClCompile Include="src\PLight.cpp" />
+    <ClCompile Include="src\Polight.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\WindowManager.cpp" />
   </ItemGroup>
@@ -165,7 +165,7 @@
     <ClInclude Include="include\InputHandler.h" />
     <ClInclude Include="include\Light.h" />
     <ClInclude Include="include\myScene.h" />
-    <ClInclude Include="include\PLight.h" />
+    <ClInclude Include="include\Polight.h" />
     <ClInclude Include="include\Properties.h" />
     <ClInclude Include="include\Scene.h" />
     <ClInclude Include="include\Shader.h" />

@@ -2,7 +2,6 @@
 
 //uniform vec3 cl;
 out vec4 FragColor;
-//in vec3 vertexColour;
 
 in vec3 Normal;
 in vec3 posInWS;
@@ -39,7 +38,7 @@ vec3 getPL() {
     vec3 lightDir = normalize((plightpos - posInWS));
 
     //ambient
-    //vec3 ambient = cubeCl * lightCl * ambientF;
+    vec3 ambient = cubeCl * lightCl * ambientF;
 
     //diffuse
     vec3 n = normalize(Normal);
