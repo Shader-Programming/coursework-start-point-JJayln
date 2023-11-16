@@ -152,6 +152,7 @@
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\InputHandler.cpp" />
     <ClCompile Include="src\myScene.cpp" />
+    <ClCompile Include="src\PLight.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\WindowManager.cpp" />
   </ItemGroup>

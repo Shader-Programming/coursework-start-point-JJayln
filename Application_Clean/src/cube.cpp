@@ -1,5 +1,6 @@
 #include "Cube.h"
 
+
 Cube::Cube(glm::vec3 col, float shine, float specStregnth) :
 	m_colour(col),
 	m_shine(shine),

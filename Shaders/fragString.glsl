@@ -21,6 +21,45 @@ float ambientF = 0.5;
 float shine = 16;
 float specStrength = 1.5;
 
+struct pLight {
+    vec3 colour;
+    vec3 Position;
+    vec3 constants;
+};
+
+//#define numPL 2
+//uniform plight[numPL];
+
+
+vec3 getPL() {
+    //attn
+    float distance = length(plightpos - posInWS);
+    float attn = 1.0 / (pAtt.x + (pAtt.y*distance) + (pAtt.z*(distance*distance)));
+
+    vec3 lightDir = normalize((plightpos - posInWS));
+
+    //ambient
+    //vec3 ambient = cubeCl * lightCl * ambientF;
+
+    //diffuse
+    vec3 n = normalize(Normal);
+    float diffuseF = dot(n, -lightDr);
+    diffuseF = max(diffuseF, 0.0f);
+    vec3 diffuse = cubeCl * lightCl * diffuseF;
+
+    //Blinn Phong
+    vec3 viewDir = normalize(viewPos - posInWS);
+    vec3 H = normalize(-lightDr + viewDir);
+    float specLevel = dot(n, H);
+    specLevel = max(specLevel, 0.0);
+    specLevel = pow(specLevel, shine);
+    vec3 specular = lightCl * specLevel * specStrength;
+
+    diffuse = diffuse * attn;
+    specular = specular * attn;
+    return diffuse + specular;
+}
+
 vec3 getDrlight()
 {
     //ambient
@@ -42,36 +81,6 @@ vec3 getDrlight()
 
     return ambient + diffuse + specular;
 }
-
-vec3 getPL() {
-    //attn
-    float distance = length(plightpos - posInWS);
-    float attn = 1.0 / (pAtt.x + (pAtt.y * distance) + (pAtt.z * (distance * distance)));
-
-    vec3 lightDir = normalize((plightpos - posInWS));
-
-    //ambient
-    vec3 ambient = cubeCl * lightCl * ambientF;
-
-    //diffuse
-    vec3 n = normalize(Normal);
-    float diffuseF = dot(n, -lightDr);
-    diffuseF = max(diffuseF, 0.0f);
-    vec3 diffuse = cubeCl * lightCl * diffuseF;
-
-    //Blinn Phong
-    vec3 viewDir = normalize(viewPos - posInWS);
-    vec3 H = normalize(-lightDr + viewDir);
-    float specLevel = dot(n, H);
-    specLevel = max(specLevel, 0.0);
-    specLevel = pow(specLevel, shine);
-    vec3 specular = lightCl * specLevel * specStrength;
-
-    diffuse = diffuse * attn;
-    specular = specular * attn;
-    return diffuse + specular;
-}
-
 
 void main() {
 
