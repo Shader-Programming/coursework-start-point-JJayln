@@ -148,6 +148,7 @@
     <ClCompile Include="src\cube.cpp" />
     <ClCompile Include="src\DrLight.cpp" />
     <ClCompile Include="src\EntryPoint.cpp" />
+    <ClCompile Include="src\Floor.cpp" />
     <ClCompile Include="src\FPSCamera.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\InputHandler.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="include\Camera.h" />
     <ClInclude Include="include\cube.h" />
     <ClInclude Include="include\drLight.h" />
+    <ClInclude Include="include\Floor.h" />
     <ClInclude Include="include\FPSCamera.h" />
     <ClInclude Include="include\GLFWinputCodes.h" />
     <ClInclude Include="include\InputHandler.h" />

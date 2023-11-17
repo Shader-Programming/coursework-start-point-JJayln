@@ -2,7 +2,8 @@
 #include "Light.h"
 #include "Shader.h"
 
-class Polight : Light{
+
+class Polight {
 
 public:
 	Polight(glm::vec3 colour, glm::vec3 position, glm::vec3 constants);
@@ -21,5 +22,4 @@ protected:
 	glm::vec3 m_pos;
 	glm::vec3 m_colour;
 
-	Light* m_Light;
 };

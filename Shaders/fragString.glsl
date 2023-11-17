@@ -1,6 +1,5 @@
 #version 330 core
 
-//uniform vec3 cl;
 out vec4 FragColor;
 
 in vec3 Normal;
@@ -20,35 +19,30 @@ float ambientF = 0.5;
 float shine = 16;
 float specStrength = 1.5;
 
-struct pLight {
-    vec3 colour;
-    vec3 Position;
-    vec3 constants;
-};
+vec3 getPL();
+vec3 getDrlight();
 
-//#define numPL 2
-//uniform plight[numPL];
-
+void main() {
+    vec3 result = getDrlight();
+    result += getPL();
+    FragColor = vec4(result, 1.0);
+}
 
 vec3 getPL() {
-    //attn
     float distance = length(plightpos - posInWS);
-    float attn = 1.0 / (pAtt.x + (pAtt.y*distance) + (pAtt.z*(distance*distance)));
+    float attn = 1.0 / (pAtt.x + (pAtt.y * distance) + (pAtt.z * (distance * distance)));
 
-    vec3 lightDir = normalize((plightpos - posInWS));
+    vec3 lightDir = normalize(plightpos - posInWS);
 
-    //ambient
     vec3 ambient = cubeCl * lightCl * ambientF;
 
-    //diffuse
     vec3 n = normalize(Normal);
-    float diffuseF = dot(n, -lightDr);
+    float diffuseF = dot(n, -lightDir);
     diffuseF = max(diffuseF, 0.0f);
     vec3 diffuse = cubeCl * lightCl * diffuseF;
 
-    //Blinn Phong
     vec3 viewDir = normalize(viewPos - posInWS);
-    vec3 H = normalize(-lightDr + viewDir);
+    vec3 H = normalize(-lightDir + viewDir);
     float specLevel = dot(n, H);
     specLevel = max(specLevel, 0.0);
     specLevel = pow(specLevel, shine);
@@ -59,18 +53,14 @@ vec3 getPL() {
     return diffuse + specular;
 }
 
-vec3 getDrlight()
-{
-    //ambient
+vec3 getDrlight() {
     vec3 ambient = cubeCl * lightCl * ambientF;
 
-    //diffuse
     vec3 n = normalize(Normal);
     float diffuseF = dot(n, -lightDr);
     diffuseF = max(diffuseF, 0.0f);
     vec3 diffuse = cubeCl * lightCl * diffuseF;
 
-    //Blinn Phong
     vec3 viewDir = normalize(viewPos - posInWS);
     vec3 H = normalize(-lightDr + viewDir);
     float specLevel = dot(n, H);
@@ -79,11 +69,4 @@ vec3 getDrlight()
     vec3 specular = lightCl * specLevel * specStrength;
 
     return ambient + diffuse + specular;
-}
-
-void main() {
-
-    vec3 result = getDrlight();
-    result += getPL();
-    FragColor = vec4(result, 1.0);
 }

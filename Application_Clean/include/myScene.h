@@ -3,6 +3,8 @@
 #include "Shader.h"
 #include "DrLight.h"
 #include "cube.h"
+#include "Polight.h"
+#include "Floor.h"
 
 class MyScene : public Scene {
 
@@ -15,6 +17,10 @@ private:
 	DrLight* m_DrLight;
 	Shader* m_myShader;
 	Cube* m_Cube;
+	Polight* m_polight;
+	Polight* m_polight2;
+	Floor* m_Floor;
+
 
 	void render();
 	
