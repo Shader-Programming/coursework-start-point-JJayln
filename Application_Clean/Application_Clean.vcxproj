@@ -155,6 +155,7 @@
     <ClCompile Include="src\myScene.cpp" />
     <ClCompile Include="src\Polight.cpp" />
     <ClCompile Include="src\Shader.cpp" />
+    <ClCompile Include="src\Spotlight.cpp" />
     <ClCompile Include="src\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +172,7 @@
     <ClInclude Include="include\Properties.h" />
     <ClInclude Include="include\Scene.h" />
     <ClInclude Include="include\Shader.h" />
+    <ClInclude Include="include\Spotlight.h" />
     <ClInclude Include="include\WindowManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
