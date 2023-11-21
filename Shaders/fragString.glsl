@@ -15,7 +15,6 @@ uniform float ambientF = 0.5;
 //PL Uniforms
 uniform vec3 plightpos;
 uniform vec3 plightcl;
-uniform vec3 pAtt;
 
 //SL Uniforms
 uniform vec3 slpos;
@@ -24,11 +23,20 @@ uniform vec3 sAtt;
 uniform vec3 sldir;
 uniform vec3 sRadii;
 
+//Material Properties
+uniform sampler2D diffuseMap;
+uniform sampler2D specularMap;
+uniform float shine;
 
 vec3 cubeCl = vec3(0.1, 0.2, 0.3);
 
 float shine = 16;
 float specStrength = 1.5;
+
+float pAttx = 1;
+float pAtty = 0.09;
+float pAttz = 0.032;
+
 
 vec3 getPL();
 vec3 getDrlight();
@@ -44,7 +52,7 @@ void main() {
 
 vec3 getPL() {
     float distance = length(plightpos - posInWS);
-    float attn = 1.0 / (pAtt.x + (pAtt.y * distance) + (pAtt.z * (distance * distance)));
+    float attn = 1.0 / (pAttx + (pAtty * distance) + (pAttz * (distance * distance)));
 
     vec3 lightDir = normalize(plightpos - posInWS);
 

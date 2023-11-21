@@ -1,10 +1,7 @@
 #include "Cube.h"
 
 
-Cube::Cube(glm::vec3 col, float shine, float specStregnth) :
-	m_colour(col),
-	m_shine(shine),
-	m_sStrength(specStregnth)
+Cube::Cube(unsigned int diffTexture, unsigned int specTexture, float shine): m_diffTex(diffTexture), m_specTex(specTexture), m_shine(shine)
 {
 	makeVAO();
 	resetTransform();
@@ -18,9 +15,14 @@ Cube::~Cube()
 void Cube::setCubeMaterialValue(Shader* shader)
 {
 	shader->use();
-	shader->setVec3("cubeCl", m_colour);
+	//shader->setVec3("cubeCl", m_colour);
 	shader->setFloat("shine", m_shine);
-	shader->setFloat("specStrength", m_sStrength);
+	//shader->setFloat("specStrength", m_sStrength);
+	shader->setInt("diffuseMap", 0);
+	shader->setInt("specularMap", 1);
+
+	glBindTextureUnit(0, m_diffTex);
+	glBindTextureUnit(1, m_specTex);
 }
 
 void Cube::rotate(float angle, glm::vec3 axis)

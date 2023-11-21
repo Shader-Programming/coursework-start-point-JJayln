@@ -6,6 +6,7 @@
 #include "Polight.h"
 #include "Floor.h"
 #include "Spotlight.h"
+#include "TM.h"
 
 class MyScene : public Scene {
 

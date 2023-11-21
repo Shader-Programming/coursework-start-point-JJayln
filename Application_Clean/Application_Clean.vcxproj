@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="include\textures\TM.cpp" />
     <ClCompile Include="src\cube.cpp" />
     <ClCompile Include="src\DrLight.cpp" />
     <ClCompile Include="src\EntryPoint.cpp" />
@@ -156,6 +157,8 @@
     <ClCompile Include="src\Polight.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\Spotlight.cpp" />
+    <ClCompile Include="src\stb_image.cpp" />
+    <ClCompile Include="src\TM.cpp" />
     <ClCompile Include="src\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +176,8 @@
     <ClInclude Include="include\Scene.h" />
     <ClInclude Include="include\Shader.h" />
     <ClInclude Include="include\Spotlight.h" />
+    <ClInclude Include="include\stb_image.h" />
+    <ClInclude Include="include\TM.h" />
     <ClInclude Include="include\WindowManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

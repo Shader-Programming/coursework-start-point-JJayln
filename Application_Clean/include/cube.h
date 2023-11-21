@@ -11,7 +11,8 @@
 class Cube {
 
 public:
-	Cube(glm::vec3 col, float shine, float specStrength);
+
+	Cube(unsigned int diffTexture, unsigned int specTexture, float shine);
 	~Cube();
 	void setCubeMaterialValue(Shader* shader);
 
@@ -35,8 +36,10 @@ private:
 	glm::mat4 m_transform;
 
 	float m_shine;
-	float m_sStrength;
-	glm::vec3 m_colour;
+	unsigned int m_diffTex;
+	unsigned int m_specTex;
+	//float m_sStrength;
+	//glm::vec3 m_colour;
 
 	//geometry data
 	std::vector<float> vertexData = {

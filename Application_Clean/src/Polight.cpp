@@ -36,6 +36,7 @@ void Polight::makeVAO()
 
     float vertexData[] = {
         3.0f, 0.0f, 0.0f, // light at the origin
+        -3.0f, 0.0f, 0.0f, // for the second light
     };
 
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
@@ -48,4 +49,5 @@ void Polight::makeVAO()
     glBindVertexArray(0);
 
     m_vertexCount = 2;
+
 }

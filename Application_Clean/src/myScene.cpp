@@ -22,13 +22,16 @@ MyScene::MyScene(GLFWwindow* window, InputHandler* H) : Scene(window, H) {
 	m_polight2 = new Polight(glm::vec3(1.0, 0.0, 0.0), glm::vec3(-1.0, -0.4, 0.0), glm::vec3(1.0, 0.22, 0.02));
 	m_polight2->setLU(m_myShader);
 
+	unsigned int cubeDiff = TexMan::loadTex("..\\Resources\\diffuseCube.jpg");
+	unsigned int cubeSpec = TexMan::loadTex("..\\Resources\\specularCube.jpg");
+
 	m_spotlight = new Spotlight(glm::vec3(0.5, 1.0, 0.0), glm::vec3(0.0, 3.0, 0.0), glm::vec3(1.0, 0.027, 0.0028), glm::vec3(0.0, -1.0, 0.0), glm::vec2(glm::cos(glm::radians(12.5f)), glm::cos(glm::radians(17.5f))));
 	m_spotlight->setLU(m_myShader);
 
 	m_Floor = new Floor(glm::vec3(1.0, 0.0, 0.0), 64, 16);
 	m_Floor->setFloorMaterialValue(m_myShader);
 }
-
+   
 MyScene::~MyScene()
 {
 	delete m_myShader;
