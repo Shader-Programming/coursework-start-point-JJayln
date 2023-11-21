@@ -1,11 +1,12 @@
-#pragma once 
+#pragma once
+
 #include <glad\glad.h>
-#include <GLFW\glfw3.h>
+#include<GLFW\glfw3.h>
 #include "glm/common.hpp"
 #include <glm/gtc/matrix_transform.hpp>
-#include "Shader.h"
 #include <vector>
-#include "myScene.h"
+#include <memory>
+#include "Shader.h"
 
 class Cube {
 
@@ -21,23 +22,21 @@ public:
 	glm::mat4& getModelMatrix() { return m_transform; }
 	unsigned int getIndicesCount() { return cubeIndices.size(); }
 
+
 	void rotate(float angle, glm::vec3 axis);
 	void scale(float scaleFactor, glm::vec3 axis);
 	void translate(glm::vec3 translation);
 
 private:
 	void makeVAO();
-	unsigned int m_VAO;
+	//void setTransform(Shader* shader) const;
+
+	unsigned int m_VBO, m_VAO, m_EBO;
 	glm::mat4 m_transform;
+
 	float m_shine;
 	float m_sStrength;
 	glm::vec3 m_colour;
-
-	Shader* m_myShader;
-
-
-	unsigned int VBO, VAO, EBO;
-	glm::mat4 m_model, m_view, m_projection;
 
 	//geometry data
 	std::vector<float> vertexData = {

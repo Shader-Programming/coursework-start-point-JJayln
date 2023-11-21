@@ -42,10 +42,19 @@
     <ClCompile Include="src\myScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DrLight.cpp">
-      <Filter>Source Files\Lights</Filter>
+    <ClCompile Include="src\DrLight.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Cube.cpp">
+    <ClCompile Include="src\Spotlight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Floor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Polight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,13 +86,22 @@
     <ClInclude Include="include\myScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="drLight.h">
-      <Filter>Header Files\Lights</Filter>
+    <ClInclude Include="include\DrLight.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Light.h">
-      <Filter>Header Files\Lights</Filter>
+    <ClInclude Include="include\Light.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Cube.h">
+    <ClInclude Include="include\Spotlight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Floor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Polight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,7 +1,7 @@
 #pragma once
 #include <glm/glm.hpp>
 
-class  Light{
+class  Light {
 public:
 	Light(glm::vec3 colour) : m_colour(colour) {};
 	~Light() {};
@@ -12,13 +12,3 @@ protected:
 
 	glm::vec3 m_colour;
 };
-
- /*Light::Light()
-{
-
-}*/
-
-/* Light::~Light()
-{
-
-}*/
