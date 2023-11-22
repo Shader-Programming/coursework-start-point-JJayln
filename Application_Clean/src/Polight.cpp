@@ -12,18 +12,6 @@ void Polight::setLU(Shader* shader)
     shader->setVec3("plightcl", m_colour);
     shader->setVec3("pAtt", m_const);
 
-    GLenum error = glGetError();
-    if (error != GL_NO_ERROR) {
-        std::cerr << "OpenGL Error after setting point light position: " << error << std::endl;
-    }
-
-
-    using std::cout;
-    using std::cerr;
-    using std::endl;
-
-    cout << "I AM POLIGHT" << endl;
-
 }
 
 void Polight::makeVAO()

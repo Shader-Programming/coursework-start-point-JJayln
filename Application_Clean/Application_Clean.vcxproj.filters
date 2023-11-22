@@ -60,9 +60,6 @@
     <ClCompile Include="src\stb_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="include\textures\TM.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\TM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

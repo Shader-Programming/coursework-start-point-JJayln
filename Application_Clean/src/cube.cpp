@@ -16,10 +16,10 @@ void Cube::setCubeMaterialValue(Shader* shader)
 {
 	shader->use();
 	//shader->setVec3("cubeCl", m_colour);
-	shader->setFloat("shine", m_shine);
 	//shader->setFloat("specStrength", m_sStrength);
-	shader->setInt("diffuseMap", 0);
-	shader->setInt("specularMap", 1);
+	shader->setFloat("shine", m_shine);
+	shader->setInt("diffMap", 0);
+	shader->setInt("specMap", 1);
 
 	glBindTextureUnit(0, m_diffTex);
 	glBindTextureUnit(1, m_specTex);
@@ -53,18 +53,20 @@ void Cube::makeVAO() {
 
 
 	glCreateVertexArrays(1, &m_VAO);
-	glVertexArrayVertexBuffer(m_VAO, 0, m_VBO, 0, sizeof(float) * 6);
+	glVertexArrayVertexBuffer(m_VAO, 0, m_VBO, 0, sizeof(float) * 8);
 	glVertexArrayElementBuffer(m_VAO, m_EBO);
 
 	glEnableVertexArrayAttrib(m_VAO, 0);
 	glEnableVertexArrayAttrib(m_VAO, 1);
-
+	glEnableVertexArrayAttrib(m_VAO, 2);
 
 	glVertexArrayAttribFormat(m_VAO, 0, 3, GL_FLOAT, GL_FALSE, 0);
 	glVertexArrayAttribFormat(m_VAO, 1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float));
+	glVertexArrayAttribFormat(m_VAO, 1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float));
 
 	glVertexArrayAttribBinding(m_VAO, 0, 0);
 	glVertexArrayAttribBinding(m_VAO, 1, 0);
+	glVertexArrayAttribBinding(m_VAO, 2, 0);
 }
 
 /*void Cube::setTransform(Shader* shader) const

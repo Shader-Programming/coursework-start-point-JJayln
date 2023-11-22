@@ -145,7 +145,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="include\textures\TM.cpp" />
     <ClCompile Include="src\cube.cpp" />
     <ClCompile Include="src\DrLight.cpp" />
     <ClCompile Include="src\EntryPoint.cpp" />

@@ -4,6 +4,7 @@ out vec4 FragColor;
 
 in vec3 Normal;
 in vec3 posInWS;
+in vec2 uv;
 
 uniform vec3 viewPos;
 
@@ -24,14 +25,11 @@ uniform vec3 sldir;
 uniform vec3 sRadii;
 
 //Material Properties
-uniform sampler2D diffuseMap;
-uniform sampler2D specularMap;
+uniform sampler2D diffMap;
+uniform sampler2D specMap;
 uniform float shine;
 
 vec3 cubeCl = vec3(0.1, 0.2, 0.3);
-
-float shine = 16;
-float specStrength = 1.5;
 
 float pAttx = 1;
 float pAtty = 0.09;
@@ -43,25 +41,31 @@ vec3 getDrlight();
 vec3 getSL();
 
 
-
 void main() {
     vec3 result = getDrlight();
     result += getPL();
     FragColor = vec4(result, 1.0);
+
+    // Output additional information for debugging
+    //FragColor.rgb += normalize(Normal) * 0.5;
 }
 
 vec3 getPL() {
+
+    vec3 objCol = texture(diffMap, uv).rgb;
+    float specStrength = texture(specMap, uv).r;
+
     float distance = length(plightpos - posInWS);
     float attn = 1.0 / (pAttx + (pAtty * distance) + (pAttz * (distance * distance)));
 
     vec3 lightDir = normalize(plightpos - posInWS);
 
-    vec3 ambient = cubeCl * lightCl * ambientF;
+    vec3 ambient = objCol * lightCl * ambientF;
 
     vec3 n = normalize(Normal);
     float diffuseF = dot(n, -lightDir);
     diffuseF = max(diffuseF, 0.0f);
-    vec3 diffuse = cubeCl * lightCl * diffuseF;
+    vec3 diffuse = objCol * lightCl * diffuseF;
 
     vec3 viewDir = normalize(viewPos - posInWS);
     vec3 H = normalize(-lightDir + viewDir);
@@ -76,12 +80,16 @@ vec3 getPL() {
 }
 
 vec3 getDrlight() {
-    vec3 ambient = cubeCl * lightCl * ambientF;
+
+    vec3 objCol = texture(diffMap, uv).rgb;
+    float specStrength = texture(specMap, uv).r;
+
+    vec3 ambient = objCol * lightCl * ambientF;
 
     vec3 n = normalize(Normal);
     float diffuseF = dot(n, -lightDr);
     diffuseF = max(diffuseF, 0.0f);
-    vec3 diffuse = cubeCl * lightCl * diffuseF;
+    vec3 diffuse = objCol * lightCl * diffuseF;
 
     vec3 viewDir = normalize(viewPos - posInWS);
     vec3 H = normalize(-lightDr + viewDir);
@@ -94,17 +102,21 @@ vec3 getDrlight() {
 }
 
 vec3 getSL() {
+
+    vec3 objCol = texture(diffMap, uv).rgb;
+    float specStrength = texture(specMap, uv).r;
+
     float distance = length(slpos - posInWS);
     float attn = 1.0 / (sAtt.x + (sAtt.y * distance) + (sAtt.z * (distance * distance)));
 
     vec3 lightDir = normalize(slpos - posInWS);
 
-    vec3 ambient = cubeCl * slcol * ambientF;
+    vec3 ambient = objCol * slcol * ambientF;
 
     vec3 n = normalize(Normal);
     float diffuseF = dot(n, -lightDir);
     diffuseF = max(diffuseF, 0.0f);
-    vec3 diffuse = cubeCl * slcol * diffuseF;
+    vec3 diffuse = objCol * slcol * diffuseF;
 
     vec3 viewDir = normalize(viewPos - posInWS);
     vec3 H = normalize(-lightDir + viewDir);
