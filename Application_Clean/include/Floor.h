@@ -19,11 +19,11 @@ public:
 
 private:
 	void makeVAO();
-	//void setTransform(Shader* shader) const;
 
 	unsigned int m_VBO, m_VAO, m_EBO;
 	glm::mat4 m_transform;
 
+	//sizing of the floor
 	const float floorSize = 8.0f;
 	const float floorLevel = -0.8f;
 

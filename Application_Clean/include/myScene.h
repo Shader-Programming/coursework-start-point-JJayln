@@ -14,24 +14,20 @@ public:
 	MyScene(GLFWwindow* window, InputHandler* H);
 	~MyScene();
 	void update(float dt) override;
-	void render();
-	void renderPolightcubes();
+	void render( );
 
 
 
 private:
 
+	// Pointers 
 	DrLight* m_DrLight;
 	Shader* m_myShader;
 	Shader* PLShaders;
+	Polight* m_polight;
 	Cube* m_Cube;
 	Cube* PLCube;
-	Polight* m_polight;
-	Polight* m_polight2;
 	Floor* m_Floor;
 	Spotlight* m_spotlight;
-
-	void renderPolight(Polight* polight);
-
 
 };

@@ -11,21 +11,18 @@ MyScene::MyScene(GLFWwindow* window, InputHandler* H) : Scene(window, H) {
 
 	unsigned int cubeDiff = TexMan::loadTex("..\\Resources\\diffuseCube.jpg");
 	unsigned int cubeSpec = TexMan::loadTex("..\\Resources\\specularCube.jpg");
-
-	
-	m_polight = new Polight(glm::vec3(1.0, 0.0, 0.0), glm::vec3(-4.0, -0.4, 0.0), glm::vec3(1.0, 0.22, 0.02));
-	m_polight->setLU(m_myShader);
-
-	// light on the right
-	m_polight2 = new Polight(glm::vec3(1.0, 0.0, 0.0), glm::vec3(-1.0, -0.4, 0.0), glm::vec3(1.0, 0.22, 0.02));
-	m_polight2->setLU(m_myShader);
+	unsigned int cubeNorm = TexMan::loadTex("..\\Resources\\normalCube.jpg");
 
 	m_DrLight = new DrLight(glm::vec3(1.0), glm::vec3(-1.0f, -1.0f, 0.0f));
 	m_DrLight->setLightUniforms(m_myShader);
 
+	m_polight = new Polight(glm::vec3(1.0, 0.0, 0.0), glm::vec3(-1.0, -0.4, 0.0), glm::vec3(1.0, 0.22, 0.02));
+	m_polight->setLU(m_myShader);
 
-	
-	m_Cube = new Cube(cubeDiff, cubeSpec, 16);
+	m_polight = new Polight(glm::vec3(1.0, 0.0, 0.0), glm::vec3(-2.0, -0.4, 0.0), glm::vec3(1.0, 0.22, 0.02));
+	m_polight->setLU(m_myShader);
+
+	m_Cube = new Cube(cubeDiff, cubeSpec, cubeNorm, 16);
 	m_Cube->setCubeMaterialValue(m_myShader);
 
 	
@@ -41,9 +38,8 @@ MyScene::~MyScene()
 	delete m_myShader;
 	delete m_Cube;
 	delete m_DrLight;
-	delete m_polight;
-	delete m_polight2;
 	delete m_Floor;
+	delete m_polight;
 }
 
 
@@ -64,6 +60,7 @@ void MyScene::render() {
 	m_myShader->setVec3("slpos", m_camera->getPosition());
 	m_myShader->setVec3("sldir", m_camera->getFront());
 
+	//Cube 1
 	glBindVertexArray(m_Cube->getVAO());
 	m_Cube->setTransform(m_myShader);
 	glDrawElements(GL_TRIANGLES, m_Cube->getIndicesCount(), GL_UNSIGNED_INT, 0);
@@ -88,43 +85,5 @@ void MyScene::render() {
 	m_Floor->setTransform(m_myShader);
 	glDrawElements(GL_TRIANGLES, m_Floor->getIndicesCount(), GL_UNSIGNED_INT, 0);
 	m_Floor->resetTransform();
-
-	renderPolightcubes();
-}
-
-void MyScene::renderPolightcubes()
-{
-	PLShaders->use();
-
-	// Render cubes at the positions of the point lights
-	renderPolight(m_polight);
-	renderPolight(m_polight2);
-}
-
-
-void MyScene::renderPolight(Polight* polight) {
-	// Set shader uniforms for rendering the cube
-	PLShaders->use();
-	polight->setLU(PLShaders);
-
-	// Bind the cube's VAO
-	glBindVertexArray(m_Cube->getVAO());
-
-	// Get the position of the Polight
-	glm::vec3 position = polight->getPos();
-
-	// Translate the cube to the Polight position
-	m_Cube->translate(position);
-
-	// Set the transformation matrix in the shader
-	m_Cube->setTransform(PLShaders);
-
-	// Render the cube
-	glDrawElements(GL_TRIANGLES, m_Cube->getIndicesCount(), GL_UNSIGNED_INT, 0);
-
-	// Reset the cube's position for future use
-	m_Cube->resetTransform();
-
-	// Unbind the VAO after rendering (optional but good practice)
-	glBindVertexArray(0);
+	
 }
