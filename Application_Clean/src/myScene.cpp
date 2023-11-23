@@ -16,15 +16,14 @@ MyScene::MyScene(GLFWwindow* window, InputHandler* H) : Scene(window, H) {
 	m_DrLight = new DrLight(glm::vec3(1.0), glm::vec3(-1.0f, -1.0f, 0.0f));
 	m_DrLight->setLightUniforms(m_myShader);
 
-	m_polight = new Polight(glm::vec3(1.0, 0.0, 0.0), glm::vec3(-1.0, -0.4, 0.0), glm::vec3(1.0, 0.22, 0.02));
+	m_polight = new Polight(glm::vec3(0.4, 0.0, 0.0), glm::vec3(-1.0, -0.4, 0.0), glm::vec3(1.0, 0.22, 0.02));
 	m_polight->setLU(m_myShader);
 
-	m_polight = new Polight(glm::vec3(1.0, 0.0, 0.0), glm::vec3(-2.0, -0.4, 0.0), glm::vec3(1.0, 0.22, 0.02));
-	m_polight->setLU(m_myShader);
+	m_polight2 = new Polight(glm::vec3(0.4, 0.0, 0.0), glm::vec3(-2.0, -0.4, 0.0), glm::vec3(1.0, 0.22, 0.02));
+	m_polight2->setLU(m_myShader);
 
 	m_Cube = new Cube(cubeDiff, cubeSpec, cubeNorm, 16);
 	m_Cube->setCubeMaterialValue(m_myShader);
-
 	
 	m_spotlight = new Spotlight(glm::vec3(0.5, 1.0, 0.0), glm::vec3(0.0, 3.0, 0.0), glm::vec3(1.0, 0.027, 0.0028), glm::vec3(0.0, -1.0, 0.0), glm::vec2(glm::cos(glm::radians(12.5f)), glm::cos(glm::radians(17.5f))));
 	m_spotlight->setLU(m_myShader);
@@ -33,6 +32,8 @@ MyScene::MyScene(GLFWwindow* window, InputHandler* H) : Scene(window, H) {
 	m_Floor->setFloorMaterialValue(m_myShader);
 }
    
+
+
 MyScene::~MyScene()
 {
 	delete m_myShader;
@@ -40,6 +41,7 @@ MyScene::~MyScene()
 	delete m_DrLight;
 	delete m_Floor;
 	delete m_polight;
+	delete m_polight2;
 }
 
 
@@ -85,5 +87,4 @@ void MyScene::render() {
 	m_Floor->setTransform(m_myShader);
 	glDrawElements(GL_TRIANGLES, m_Floor->getIndicesCount(), GL_UNSIGNED_INT, 0);
 	m_Floor->resetTransform();
-	
 }

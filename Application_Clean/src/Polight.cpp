@@ -14,28 +14,30 @@ void Polight::setLU(Shader* shader)
 
 }
 
-void Polight::makeVAO()
-{
-    glGenVertexArrays(1, &m_VAO);
-    glBindVertexArray(m_VAO);
 
-    glGenBuffers(1, &m_VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
 
-    float vertexData[] = {
-        3.0f, 0.0f, 0.0f, // light at the origin
-        -3.0f, 0.0f, 0.0f, // for the second light
-    };
-
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
-
-    // Set up vertex attributes (position)
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);
-
-    m_vertexCount = 2;
-
-}
+//void Polight::makeVAO()
+//{
+//    glGenVertexArrays(1, &m_VAO);
+//    glBindVertexArray(m_VAO);
+//
+//    glGenBuffers(1, &m_VBO);
+//    glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+//
+//    float vertexData[] = {
+//        3.0f, 0.0f, 0.0f, // light at the origin
+//        -3.0f, 0.0f, 0.0f, // for the second light
+//    };
+//
+//    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
+//
+//    // Set up vertex attributes (position)
+//    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+//    glEnableVertexAttribArray(0);
+//
+//    glBindBuffer(GL_ARRAY_BUFFER, 0);
+//    glBindVertexArray(0);
+//
+//    m_vertexCount = 2;
+//
+//}

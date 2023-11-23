@@ -25,6 +25,7 @@ private:
 	Shader* m_myShader;
 	Shader* PLShaders;
 	Polight* m_polight;
+	Polight* m_polight2;
 	Cube* m_Cube;
 	Cube* PLCube;
 	Floor* m_Floor;

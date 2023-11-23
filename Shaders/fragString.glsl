@@ -48,7 +48,7 @@ void main() {
     n = normalize(TBN * n);
 
     vec3 result = getDrlight();
-    result += getPL();
+    result += getPL(), getPL();
     FragColor = vec4(result, 1.0);
 }
 
@@ -101,6 +101,7 @@ vec3 getPL() {
     specular = specular * attn;
     return diffuse + specular;
 }
+
 
 vec3 getSL() {
     vec3 objCol = texture(diffMap, uv).rgb;
